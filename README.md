@@ -1,24 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a toy application created with Ruby on Rails following the curriculum of [The Odin Project](https://theodingproject.com). Go to [project](https://www.theodinproject.com/courses/ruby-on-rails/lessons/building-advanced-forms?ref=lnav).
 
-Things you may want to cover:
+-robomonk
 
-* Ruby version
+Below, I explain briefly how the app flows.
 
-* System dependencies
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
