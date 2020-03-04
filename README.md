@@ -7,5 +7,5 @@ This is a toy application created with Ruby on Rails following the curriculum of
 Below, I explain briefly how the app flows.
 
 
-![database diagram](https://imgur.com/afxvXEK)
+![database diagram](https://i.imgur.com/SJjBC1m.jpg)
 
