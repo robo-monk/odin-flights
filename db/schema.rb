@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2020_03_04_160749) do
     t.string "location"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "airport_id"
   end
 
   create_table "flights", force: :cascade do |t|

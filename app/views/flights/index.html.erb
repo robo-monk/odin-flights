@@ -1,7 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Flights</h1>
+<%= @searching_for %> <br/> <hr>
+<%= form_tag(flights_path,  method: :get) do %>
+  <strong>New Search: </strong>
 
+  Departing from <%= select_tag(:from, options_for_select(@airport_options)) %>
+  and landing to <%= select_tag(:to, options_for_select(@airport_options)) %>
+  <%
+=begin%>
+ Date <%= date_field_tag :date, params[:date] %> 
+<%
+=end%>
+  <%= submit_tag 'Search', name: nil %>
+<% end %>
+<hr>
 <table>
   <thead>
     <tr>
@@ -15,16 +27,29 @@
   </thead>
 
   <tbody>
+    <% if @flights.count == 0 %>
+      <i> No flights matching your search </i>
+    <% else %>
+      <i> Showing <%= @flights.count %> flights matching your search </i>
+    <% end %>
     <% @flights.each do |flight| %>
       <tr>
         <td><%= flight.datetime %></td>
-        <td><%= flight.from %></td>
-        <td><%= flight.to %></td>
-        <td><%= flight.duration %></td>
-        <td><%= flight.price %></td>
-        <td><%= link_to 'Show', flight %></td>
-        <td><%= link_to 'Edit', edit_flight_path(flight) %></td>
-        <td><%= link_to 'Destroy', flight, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= flight.from.code %></td>
+        <td><%= flight.to.code %></td>
+        <td><%= flight.duration %> h. </td>
+        <td>$<%= flight.price %></td>
+        <td><%= link_to 'Book', flight %></td>
+        <%
+=begin%>
+ <td><%= link_to 'Edit', edit_flight_path(flight) %></td> 
+<%
+=end%>
+        <%
+=begin%>
+ <td><%= link_to 'Destroy', flight, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
+<%
+=end%>
       </tr>
     <% end %>
   </tbody>

@@ -4,7 +4,17 @@ class FlightsController < ApplicationController
   # GET /flights
   # GET /flights.json
   def index
-    @flights = Flight.all
+    # params[:from]
+    # Flight.where(id: 5).select(:id, :first_name)
+    @airport_options = Airport.all.map{ |a| [ a.code, a.id ] }
+    @airport_options.unshift ['any', nil]
+
+    # unless params[:from].nil? 
+    #   @flights = Flight.where(from_id: params[:from])
+    # else
+    #   @flights = Flight.all
+    # end
+    @flights = find_flights(params)
   end
 
   # GET /flights/1
@@ -69,6 +79,17 @@ class FlightsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def flight_params
-      params.require(:flight).permit(:datetime, :from, :to, :duration, :price)
+      params.permit(:datetime, :from, :to, :duration, :price)
+    end
+
+    def find_flights(params)
+      params[:from].nil? || params[:from].empty? ? from = 'from_id' : from = params[:from]
+      params[:to].nil? || params[:to].empty? ? to = 'to_id' : to = params[:to]
+      # AVOID THIS, SQL INJECTION IS POSSIBLE!
+      from_text = Airport.exists?(id: params[:from]) ? "#{Airport.find(params[:from]).code} <i> (#{Airport.find(params[:from]).name}) </i>": 'ANYWHERE'
+      to_text = Airport.exists?(id: params[:to]) ? "#{Airport.find(params[:to]).code} <i> (#{Airport.find(params[:to]).name}) </i>" : 'ANYWHERE'
+
+      @searching_for = "<h2> Searching for: </h2> Flights from  <strong> #{from_text} </strong>  to <strong> #{to_text} </strong".html_safe
+      @flights = Flight.where("from_id = #{from} AND to_id = #{to}").order(:datetime)
     end
 end
