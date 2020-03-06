@@ -1,0 +1,58 @@
+<%= form_with(model: booking, local: true) do |form| %>
+  <%= hidden_field_tag "flight_id", @booking_flight.id %>
+  <%
+=begin%>
+ <%= hidden_field_tag "passenger_id", 1 %> 
+<%
+=end%>
+
+  <% if booking.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+
+      <ul>
+        <% booking.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+  
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>
+
+<%
+=begin%>
+ <% passenger = @passenger%>
+
+<%= form_with(model: passenger, local: true) do |form| %>
+  <% if passenger.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(passenger.errors.count, "error") %> prohibited this passenger from being saved:</h2>
+
+      <ul>
+        <% passenger.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+
+<% end %> 
+<%
+=end%>

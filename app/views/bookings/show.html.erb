@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<h1> Booking for: </h1>
+<p> Passenger Name: <%=@booking.passengers.first.name%> </p>
+<p> Passenger Email: <%=@booking.passengers.first.email%> </p>
+
+<h1> Booked flight details: </h1>
+<p> <%= render @booking.flight %> </p>
+<!-- <h3> Passenger Email: <%=@booking.passengers.first.name%> </h3> -->
+
+<%= link_to 'Book new flight', flights_path %>
