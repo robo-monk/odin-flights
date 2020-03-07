@@ -6,11 +6,7 @@
 
   Departing from <%= select_tag(:from, options_for_select(@airport_options)) %>
   and landing to <%= select_tag(:to, options_for_select(@airport_options)) %>
-  <%
-=begin%>
- Date <%= date_field_tag :date, params[:date] %> 
-<%
-=end%>
+
   <%= submit_tag 'Search', name: nil %>
 <% end %>
 <hr>
@@ -40,16 +36,6 @@
         <td><%= flight.duration %> h. </td>
         <td>$<%= flight.price %></td>
         <td><%= link_to 'Book', flight %></td>
-        <%
-=begin%>
- <td><%= link_to 'Edit', edit_flight_path(flight) %></td> 
-<%
-=end%>
-        <%
-=begin%>
- <td><%= link_to 'Destroy', flight, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
-<%
-=end%>
       </tr>
     <% end %>
   </tbody>

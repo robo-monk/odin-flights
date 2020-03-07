@@ -18,7 +18,7 @@ Airport.create(name:'King Fahd International Airport ', code:'DMM', location: 'Q
 
 
 
-450.times do
+420.times do
   airports = Airport.order(Arel.sql('RANDOM()'))
   f = Flight.new
   f.from = airports[0]
