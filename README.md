@@ -1,6 +1,6 @@
 # README
 
-This is a toy application created with Ruby on Rails following the curriculum of [The Odin Project](https://theodingproject.com). Go to [project](https://www.theodinproject.com/courses/ruby-on-rails/lessons/building-advanced-forms?ref=lnav). 
+This is a toy application created with Ruby on Rails following the curriculum of [The Odin Project](https://www.theodinproject.com/). Go to [project](https://www.theodinproject.com/courses/ruby-on-rails/lessons/building-advanced-forms?ref=lnav). 
 Below, I explain briefly how the app flows, but keep in mind the 'Documentation' is terrible, as I didn't want to spend too much time on it. Maybe I'll improve it in the future. You can also view the app [live on Heroku](https://infinite-ridge-41115.herokuapp.com/).
 
 
