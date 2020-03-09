@@ -30,12 +30,20 @@ class BookingsController < ApplicationController
     puts params
     @booking_flight = Flight.find(params[:flight_id])
     # puts params
+
     @booking = @booking_flight.bookings.build(booking_params)
-    @booking.passengers << Passenger.new(name: params[:booking][:name], email: params[:booking][:email])
-    
+    passenger = Passenger.new(name: params[:booking][:name], email: params[:booking][:email])
+
     respond_to do |format|
       if @booking.save
-        format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
+        @booking.passengers << passenger
+        puts 'email of first passengers of booking'
+
+        passenger = @booking.passengers.first
+        puts passenger
+        puts passenger.email
+        PassengerMailer.with(passenger: passenger).thank_you_email.deliver_now
+        format.html { redirect_to @booking, notice: 'Booking was successful.' }
         format.json { render :show, status: :created, location: @booking }
       else
         format.html { render :new }
